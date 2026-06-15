@@ -1,0 +1,371 @@
+/* ==========================================
+   1. DESIGN SYSTEM & VARIABLES
+   ========================================== */
+:root {
+  /* Color Palette */
+  --bg-color: #FFF1F3;       /* 밀크 크림 */
+  --primary-color: #D93856;  /* 딥 체리 */
+  --text-color: #2B2D42;     /* 차콜 블랙 */
+  --white: #FFFFFF;
+  
+  /* Fonts (Google Fonts 연동 필요) */
+  --font-title: 'Black Han Sans', 'Jua', sans-serif;
+  --font-body: 'Gmarket Sans', 'Noto Sans KR', sans-serif;
+  
+  /* Layout */
+  --max-width: 1200px;
+  --gap: 2rem;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* 기존에 있던 Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-title);
+}
+
+section {
+  padding: 5rem 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ==========================================
+   2. LAYOUT STYLES (Flexbox & Grid)
+   ========================================== */
+
+/* Header & Navigation (Flexbox) */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 241, 243, 0.9); /* 배경색에 투명도 부여 */
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+nav {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0.rem 0.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav .logo {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+nav ul a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav ul a:hover {
+  color: var(--primary-color);
+}
+
+/* #Hero Section (Flexbox) */
+#hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at top, var(--white), transparent);
+}
+
+#hero h1 {
+  font-size: 4rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* #About Section (Flexbox - 2Column) */
+#about {
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+}
+
+#about .profile-img {
+  flex: 1;
+  min-width: 300px;
+  aspect-ratio: 1 / 1;
+  background-color: var(--white);
+  border: 4px solid var(--primary-color);
+  border-radius: 20px;
+}
+
+#about .profile-text {
+  flex: 1.5;
+}
+
+/* #Works Section (Grid - 포트폴리오 카드 레이아웃) */
+#works .card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap);
+  margin-top: 2rem;
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid var(--text-color);
+  box-shadow: 5px 5px 0px var(--text-color); /* 키치한 느낌의 그림자 */
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px var(--primary-color);
+}
+
+/* #Skills Section (Grid - 대시보드/배지 스타일) */
+#skills .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.skill-badge {
+  background-color: var(--white);
+  padding: 1rem;
+  text-align: center;
+  border-radius: 50px;
+  border: 2px solid var(--primary-color);
+  font-weight: bold;
+}
+
+/* #Contact Section (Flexbox) */
+#contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+#contact .contact-btn {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  font-family: var(--font-title);
+  border-radius: 30px;
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+}
+
+#contact .contact-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Footer (Flexbox) */
+footer {
+  background-color: var(--text-color);
+  color: var(--white);
+  padding: 2rem;
+  text-align: center;
+}
+
+
+/* ==========================================
+   3. RESPONSIVE DESIGN (반응형 단계)
+   ========================================== */
+
+/* 태블릿 스크린 (Max-width: 768px) */
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 3rem;
+  }
+
+  #about {
+    flex-direction: column; /* 가로 배열을 세로로 */
+    text-align: center;
+  }
+
+  #works .card-grid {
+    grid-template-columns: repeat(2, 1fr); /* 3열에서 2열로 축소 */
+  }
+}
+
+/* 모바일 스크린 (Max-width: 480px) */
+@media (max-width: 480px) {
+  nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #hero h1 {
+    font-size: 2.3rem;
+  }
+
+  #works .card-grid {
+    grid-template-columns: 1fr; /* 1열로 나열 */
+  }
+
+  section {
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* ==========================================
+   HERO CARD HOVER EFFECT (살짝 위로 떠오르기)
+   ========================================== */
+#hero .card {
+  background-color: var(--white);
+  border-radius: 20px;
+  border: 2px solid var(--text-color);
+  box-shadow: 5px 5px 0px var(--text-color);
+  padding: 2.5rem;
+  
+  /* 부드러운 위치 이동과 그림자 전환을 위한 설정 */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              box-shadow 0.3s ease;
+  will-change: transform; /* 브라우저 렌더링 최적화 */
+}
+
+#hero .card:hover {
+  /* 마우스를 올리면 Y축(위쪽)으로 8px 부드럽게 들려 올라갑니다 */
+  transform: translateY(-8px);
+  
+  /* 떠오른 만큼 그림자를 더 넓고 은은하게 퍼트려 입체감을 극대화합니다 */
+  box-shadow: 0px 15px 25px rgba(43, 45, 66, 0.15);
+}
+
+
+/* ==========================================
+   PORTFOLIO BUTTON HOVER EFFECT (배경색 자연스러운 전환)
+   ========================================== */
+#contact .contact-btn,
+#hero .hero-btn { /* 내비게이션이나 히어로 섹션 내 다른 버튼에도 공통 적용 가능 */
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  font-family: var(--font-title);
+  border-radius: 30px;
+  font-size: 1.2rem;
+  display: inline-block;
+  border: 2px solid var(--primary-color);
+  
+  /* 배경색, 글자색, 테두리, 크기가 0.3초간 부드럽게 변하도록 설정 */
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease,
+              transform 0.2s ease;
+}
+
+#contact .contact-btn:hover,
+#hero .hero-btn:hover {
+  /* 호버 시 주색상(체리)과 흰색 배경을 반전시켜 자연스럽게 녹아드는 효과 */
+  background-color: transparent;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  
+  /* 신나는 축제 분위기에 맞게 버튼이 통통하게 커지는 느낌을 살짝 더합니다 */
+  transform: scale(1.03); 
+}
+
+/* Hero 섹션 안의 사진 스타일 조절 */
+.hero-img {
+  width: 100%;            /* 부모 박스 너비에 꽉 차게 맞춤 */
+  max-width: 450px;       /* 사진이 무한정 커지지 않도록 최대 크기 제한 (원하는 대로 조절 가능) */
+  height: auto;           /* 가로 비율에 맞춰 세로 비율 자동 조절 */
+  display: block;         /* 아래쪽 불필요한 여백 제거 */
+  margin: 0 auto 2rem;    /* 사진을 가운데로 정렬하고, 아래 글씨와의 간격(2rem) 부여 */
+  .hero-section {
+  /* ... 기존에 작성하신 height, display 등의 속성은 그대로 두시고 ... */
+  
+  /* 💡 [핵심 추가] 상단 고정 메뉴바의 두께만큼 위쪽 여백을 줍니다. */
+  padding-top: 100px; 
+}
+  
+  /* 포트폴리오 무드에 맞춘 디자인 디테일 */
+  border-radius: 20px;    /* 사진 모서리를 둥글게 */
+  border: 3px solid var(--text-color); /* 차콜 블랙 테두리 */
+  box-shadow: 8px 8px 0px var(--primary-color); /* 딥 체리 색상의 키치한 그림자 */
+}
+
+/* ==========================================
+   HERO TEXT FADE-IN ANIMATION
+   ========================================== */
+
+/* 1. 애니메이션 효과 정의 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* 20px 아래에서 시작 */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);    /* 원래 위치로 이동 */
+  }
+}
+
+/* 2. 애니메이션이 적용될 기본 상태 설정 */
+.hero-title, 
+.hero-subtitle,
+.hero-section .hero-btn,
+.hero-section .hero-img {
+  opacity: 0; /* 시작할 때 처음엔 안 보이게 설정 */
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* 3. 각 요소별 순차적 지연 시간(Delay) 세팅 */
+.hero-title {
+  animation-delay: 1s; /* 타이틀 등장 */
+}
+
+.hero-subtitle {
+  animation-delay: 0.4s; /* 0.2초 후 부제 등장 */
+}
+
+/* (선택) 만약 Hero 섹션에 사진이나 버튼이 있다면 순서대로 나오게 조절 */
+.hero-section .hero-img {
+  animation-delay: 0.2s;   /* 사진을 가장 먼저 띄우고 싶다면 0초로 설정 가능 */
+}
+
+.hero-section .hero-btn {
+  animation-delay: 0.6s; /* 0.2초 후 최종 버튼 등장 */
+}
+
